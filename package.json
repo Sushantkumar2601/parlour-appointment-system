@@ -1,0 +1,26 @@
+{
+  "name": "parlour-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm start --prefix parlour-app/client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sushantkumar2601/parlour-appointment-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Sushantkumar2601/parlour-appointment-system/issues"
+  },
+  "homepage": "https://github.com/Sushantkumar2601/parlour-appointment-system#readme",
+  "dependencies": {
+    "concurrently": "^10.0.4"
+  }
+}
