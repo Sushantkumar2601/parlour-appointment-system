@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Service = require("../models/Service");
+const Service = require("../models/service");
 
 // GET /api/services - Fetch all services
 router.get("/", async (req, res) => {
