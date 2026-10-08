@@ -13,7 +13,7 @@ const SlotPicker = ({ date, selectedSlot, onSelectSlot, dark }) => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/appointments/available-slots?date=${date}`
+        `https://parlour-backend-gv16.onrender.com/api/appointments/available-slots?date=${date}`
       );
       setSlots(res.data.slots);
     } catch (err) { console.log(err); }

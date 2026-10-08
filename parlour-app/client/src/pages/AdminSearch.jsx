@@ -103,7 +103,7 @@ useEffect(() => {
 
   const fetchAllChats = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/all-chats");
+      const res = await axios.get("https://parlour-backend-gv16.onrender.com/api/admin/all-chats");
       setChatList(res.data);
     } catch (err) {
       console.log(err);
@@ -112,7 +112,7 @@ useEffect(() => {
 
   const fetchUserChat = async (userId, silent = false) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/admin/chat/${userId}`);
+      const res = await axios.get(`https://parlour-backend-gv16.onrender.com/api/admin/chat/${userId}`);
       setChatMessages(res.data);
       if (!silent) fetchAllChats();
     } catch (err) {
@@ -122,7 +122,7 @@ useEffect(() => {
 
   const markChatAsRead = async (userId) => {
     try {
-      await axios.patch(`http://localhost:5000/api/admin/chat/${userId}/mark-read`);
+      await axios.patch(`https://parlour-backend-gv16.onrender.com/api/admin/chat/${userId}/mark-read`);
       fetchAllChats();
     } catch (err) {
       console.log(err);
@@ -140,7 +140,7 @@ useEffect(() => {
     setChatLoading(true);
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/admin/chat/${selectedChatUser.userId}/reply`,
+        `https://parlour-backend-gv16.onrender.com/api/admin/chat/${selectedChatUser.userId}/reply`,
         { text: chatInput }
       );
       setChatMessages((prev) => [...prev, res.data]);
@@ -154,7 +154,7 @@ useEffect(() => {
 const fetchAllAppointments = async (isPolling = false) => {
     if (!isPolling) setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/all-appointments");
+      const res = await axios.get("https://parlour-backend-gv16.onrender.com/api/admin/all-appointments");
       const appointments = res.data;
 
       const lastSeenAt = localStorage.getItem("admin_last_seen_at");
@@ -205,7 +205,7 @@ const fetchAllAppointments = async (isPolling = false) => {
     if (!phone) return toast.error("Enter phone number!");
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/admin/customer-history/${phone}`);
+      const res = await axios.get(`https://parlour-backend-gv16.onrender.com/api/admin/customer-history/${phone}`);
       setSearchResult(res.data);
       toast.success("Customer found!");
     } catch (err) {
@@ -217,7 +217,7 @@ const fetchAllAppointments = async (isPolling = false) => {
 
 const handleStatusChange = async (id, newStatus, isSearch = false) => {
     try {
-      await axios.patch(`http://localhost:5000/api/admin/appointment/${id}/status`, { status: newStatus });
+      await axios.patch(`https://parlour-backend-gv16.onrender.com/api/admin/appointment/${id}/status`, { status: newStatus });
       toast.success(`Updated to ${newStatus}!`);
 
       if (isSearch && searchResult) {
@@ -246,7 +246,7 @@ const handleStatusChange = async (id, newStatus, isSearch = false) => {
 
 const handleMarkRefunded = async (id, isSearch = false) => {
     try {
-      await axios.patch(`http://localhost:5000/api/admin/appointment/${id}/mark-refunded`);
+      await axios.patch(`https://parlour-backend-gv16.onrender.com/api/admin/appointment/${id}/mark-refunded`);
       toast.success("Marked as refunded!");
 
       if (isSearch && searchResult) {
@@ -276,7 +276,7 @@ const handleMarkRefunded = async (id, isSearch = false) => {
     if (!date) return;
     setLoadingSlots(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/appointments/available-slots?date=${date}`);
+      const res = await axios.get(`https://parlour-backend-gv16.onrender.com/api/appointments/available-slots?date=${date}`);
       setAvailableSlotsForReschedule(res.data.slots);
     } catch (err) {
       toast.error("Failed to load slots!");
@@ -287,7 +287,7 @@ const handleMarkRefunded = async (id, isSearch = false) => {
 const handleRescheduleSubmit = async () => {
     if (!proposedDate || !proposedSlot) return toast.error("Date aur time slot dono select karo!");
     try {
-      await axios.patch(`http://localhost:5000/api/admin/appointment/${rescheduleModal}/reschedule`, {
+      await axios.patch(`https://parlour-backend-gv16.onrender.com/api/admin/appointment/${rescheduleModal}/reschedule`, {
         proposedDate, proposedTimeSlot: proposedSlot, rescheduleReason,
       });
       toast.success("Reschedule request customer ko bhej diya!");
