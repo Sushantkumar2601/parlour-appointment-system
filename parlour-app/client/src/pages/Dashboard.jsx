@@ -87,7 +87,7 @@ useEffect(() => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
  const fetchHistory = async () => {
     try {
-      const res = await axios.get("https://parlour-backend-gv16.onrender.com/api/appointments/my-history", {
+      const res = await axios.get("https://parlour-backend-gvl5.onrender.com/api/appointments/my-history", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAppointments(res.data);
@@ -101,13 +101,13 @@ useEffect(() => {
   };
   const fetchServices = async () => {
     try {
-      const res = await axios.get("https://parlour-backend-gv16.onrender.com/api/services");
+      const res = await axios.get("https://parlour-backend-gvl5.onrender.com/api/services");
       setServices(res.data);
     } catch (err) { console.log(err); }
   };
   const fetchChatMessages = async () => {
     try {
-      const res = await axios.get("https://parlour-backend-gv16.onrender.com/api/messages/my-chat", {
+      const res = await axios.get("https://parlour-backend-gvl5.onrender.com/api/messages/my-chat", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setChatMessages(res.data);
@@ -124,7 +124,7 @@ useEffect(() => {
   const markUserMessagesAsRead = async () => {
     try {
       await axios.patch(
-        "https://parlour-backend-gv16.onrender.com/api/messages/mark-read",
+        "https://parlour-backend-gvl5.onrender.com/api/messages/mark-read",
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -147,7 +147,7 @@ useEffect(() => {
     setChatLoading(true);
     try {
       const res = await axios.post(
-        "https://parlour-backend-gv16.onrender.com/api/messages/send",
+        "https://parlour-backend-gvl5.onrender.com/api/messages/send",
         { text: chatInput },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -176,7 +176,7 @@ useEffect(() => {
     setLoading(true);
     try {
       await axios.post(
-        "https://parlour-backend-gv16.onrender.com/api/appointments/book",
+        "https://parlour-backend-gvl5.onrender.com/api/appointments/book",
         { date: selectedDate, timeSlot: selectedSlot, servicesSelected: cart.map((i) => i._id), totalAmount: total, discountApplied: discount, paymentMode },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -199,7 +199,7 @@ toast.success("Appointment booked! 🎉");
 const handleRescheduleResponse = async (appointmentId, action) => {
     try {
       await axios.patch(
-        `https://parlour-backend-gv16.onrender.com/api/appointments/${appointmentId}/respond-reschedule`,
+        `https://parlour-backend-gvl5.onrender.com/api/appointments/${appointmentId}/respond-reschedule`,
         { action },
         { headers: { Authorization: `Bearer ${token}` } }
       );

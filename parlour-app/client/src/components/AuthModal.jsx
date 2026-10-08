@@ -52,7 +52,7 @@ const AuthModal = ({ onClose }) => {
 
       // Check if new or existing user
       const userCheck = await axios.get(
-        `https://parlour-backend-gv16.onrender.com/api/auth/check-user/${phone}`
+        `https://parlour-backend-gvl5.onrender.com/api/auth/check-user/${phone}`
       );
       setIsNewUser(userCheck.data.isNewUser);
 
@@ -79,7 +79,7 @@ const AuthModal = ({ onClose }) => {
       if (!isNewUser) {
         // Existing user — login via backend
         const res = await axios.post(
-          "https://parlour-backend-gv16.onrender.com/api/auth/firebase-login",
+          "https://parlour-backend-gvl5.onrender.com/api/auth/firebase-login",
           { phone }
         );
         login(res.data.user, res.data.token);
@@ -111,7 +111,7 @@ const AuthModal = ({ onClose }) => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://parlour-backend-gv16.onrender.com/api/auth/register",
+        "https://parlour-backend-gvl5.onrender.com/api/auth/register",
         {
           name: form.name,
           email: form.email.trim(),
